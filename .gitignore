@@ -11,18 +11,3 @@ outputs/ocr_training/logs/
 outputs/ocr_training/.hydra/
 outputs/ocr_training/submissions/
 outputs/2026-*/
-
-# Claude 내부 파일
-.claude/
-
-# 루트 임시 이미지
-failure_analysis.png
-missed_images.png
-missed_images_v2.png
-test_worst20_v1.png
-worst20.png
-worst20_v1.png
-worst_images.png
-
-# 보고서 이미지 중복 폴더
-report_images/
