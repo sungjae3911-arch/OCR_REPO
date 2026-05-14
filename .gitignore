@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 체크포인트 (대용량)
+outputs/ocr_training/checkpoints/
+
+# 학습 로그 및 hydra 출력
+outputs/ocr_training/logs/
+outputs/ocr_training/.hydra/
+outputs/ocr_training/submissions/
+outputs/2026-*/
+

@@ -1,0 +1,27 @@
+# @package _global_
+# v8: 1280 resolution + basic aug (HorizontalFlip only)
+# v7의 강한 aug가 원인일 가능성 검증 — 1280 해상도 효과 단독 측정
+
+defaults:
+  - base
+  - /preset/datasets/db_1280_basic
+  - /preset/models/model_v4
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20
+
+dataloaders:
+  train_dataloader:
+    batch_size: 2
+    shuffle: True
+    num_workers: 4
+  val_dataloader:
+    batch_size: 2
+    shuffle: False
+    num_workers: 4
+  test_dataloader:
+    batch_size: 2
+    shuffle: False
+    num_workers: 4

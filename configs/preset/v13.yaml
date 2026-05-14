@@ -1,0 +1,89 @@
+# @package _global_
+# v13: EfficientNet-B4 + basic aug + shrink_ratio 0.45 + resolution 1280
+# v12(1024)에서 해상도 올려 소형 글자 검출 개선 목적
+
+defaults:
+  - base
+  - /preset/datasets/db
+  - /preset/models/model_v4
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20
+  accumulate_grad_batches: 2
+
+dataloaders:
+  train_dataloader:
+    batch_size: 2
+    shuffle: True
+    num_workers: 4
+  val_dataloader:
+    batch_size: 2
+    shuffle: False
+    num_workers: 4
+  test_dataloader:
+    batch_size: 2
+    shuffle: False
+    num_workers: 4
+
+collate_fn:
+  shrink_ratio: 0.45
+
+transforms:
+  train_transform:
+    _target_: ${dataset_path}.DBTransforms
+    transforms:
+      - _target_: albumentations.LongestMaxSize
+        max_size: 1280
+        p: 1.0
+      - _target_: albumentations.PadIfNeeded
+        min_width: 1280
+        min_height: 1280
+        border_mode: 0
+        p: 1.0
+      - _target_: albumentations.HorizontalFlip
+        p: 0.5
+      - _target_: albumentations.Normalize
+        mean: [0.485, 0.456, 0.406]
+        std: [0.229, 0.224, 0.225]
+    keypoint_params:
+      _target_: albumentations.KeypointParams
+      format: 'xy'
+      remove_invisible: True
+  val_transform:
+    _target_: ${dataset_path}.DBTransforms
+    transforms:
+      - _target_: albumentations.LongestMaxSize
+        max_size: 1280
+        p: 1.0
+      - _target_: albumentations.PadIfNeeded
+        min_width: 1280
+        min_height: 1280
+        border_mode: 0
+        p: 1.0
+      - _target_: albumentations.Normalize
+        mean: [0.485, 0.456, 0.406]
+        std: [0.229, 0.224, 0.225]
+    keypoint_params:
+      _target_: albumentations.KeypointParams
+      format: 'xy'
+      remove_invisible: True
+  test_transform:
+    _target_: ${dataset_path}.DBTransforms
+    transforms:
+      - _target_: albumentations.LongestMaxSize
+        max_size: 1280
+        p: 1.0
+      - _target_: albumentations.PadIfNeeded
+        min_width: 1280
+        min_height: 1280
+        border_mode: 0
+        p: 1.0
+      - _target_: albumentations.Normalize
+        mean: [0.485, 0.456, 0.406]
+        std: [0.229, 0.224, 0.225]
+    keypoint_params:
+      _target_: albumentations.KeypointParams
+      format: 'xy'
+      remove_invisible: True

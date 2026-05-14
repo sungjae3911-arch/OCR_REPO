@@ -1,0 +1,8 @@
+# @package _global_
+
+models:
+  encoder:
+    _target_: ${encoder_path}.TimmBackbone
+    model_name: 'tf_efficientnet_b6.aa_in1k'
+    select_features: [1, 2, 3, 4]
+    pretrained: true

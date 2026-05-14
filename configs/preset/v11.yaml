@@ -1,0 +1,30 @@
+# @package _global_
+# v11: EfficientNet-B4 + basic aug (HorizontalFlip only) + shrink_ratio 0.4→0.5
+# 목적: 소형 글자 FN 개선 (error_analysis에서 FN의 68%가 500px² 미만)
+
+defaults:
+  - base
+  - /preset/datasets/db
+  - /preset/models/model_v4
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20
+
+dataloaders:
+  train_dataloader:
+    batch_size: 4
+    shuffle: True
+    num_workers: 4
+  val_dataloader:
+    batch_size: 4
+    shuffle: False
+    num_workers: 4
+  test_dataloader:
+    batch_size: 4
+    shuffle: False
+    num_workers: 4
+
+collate_fn:
+  shrink_ratio: 0.5

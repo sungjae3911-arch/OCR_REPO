@@ -1,0 +1,8 @@
+# @package _global_
+
+models:
+  loss:
+    _target_: ${loss_path}.CRAFTLoss
+    negative_ratio: 3.0
+    eps: 1e-6
+    region_weight: 1.0

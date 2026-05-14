@@ -1,0 +1,14 @@
+# @package _global_
+
+models:
+  head:
+    _target_: ${head_path}.CRAFTHead
+    in_channels: 256
+    upscale: 2
+    bias: False
+    smooth: False
+    postprocess:
+      thresh: 0.3
+      box_thresh: 0.3
+      max_candidates: 300
+      use_polygon: False

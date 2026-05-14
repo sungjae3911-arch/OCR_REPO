@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - base
+  - /preset/datasets/db
+  - /preset/models/model_v2
+  - /preset/lightning_modules/base
+  - _self_
+
+models:
+  head:
+    postprocess:
+      box_thresh: 0.2

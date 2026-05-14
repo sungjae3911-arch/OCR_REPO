@@ -1,0 +1,11 @@
+# @package _global_
+
+defaults:
+  - base
+  - /preset/datasets/db_aug_v2
+  - /preset/models/model_v1
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20

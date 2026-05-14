@@ -1,0 +1,10 @@
+# @package _global_
+
+models:
+  decoder:
+    _target_: ${decoder_path}.UNet
+    in_channels: [32, 56, 160, 448]
+    strides: [4, 8, 16, 32]
+    inner_channels: 256
+    output_channels: 64
+    bias: False

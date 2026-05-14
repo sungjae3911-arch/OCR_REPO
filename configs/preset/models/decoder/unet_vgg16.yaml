@@ -1,0 +1,11 @@
+# @package _global_
+
+# VGG16 select_features=[1,2,3,4] -> channels: [128, 256, 512, 512]
+models:
+  decoder:
+    _target_: ${decoder_path}.UNet
+    in_channels: [128, 256, 512, 512]
+    strides: [2, 4, 8, 16]
+    inner_channels: 256
+    output_channels: 64
+    bias: False

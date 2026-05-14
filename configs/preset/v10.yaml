@@ -1,0 +1,26 @@
+# @package _global_
+# v10: EfficientNet-B4 + aug_v3 (Rotate ±45, RandomScale 양방향, ElasticTransform)
+
+defaults:
+  - base
+  - /preset/datasets/db_aug_v3
+  - /preset/models/model_v4
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20
+
+dataloaders:
+  train_dataloader:
+    batch_size: 4
+    shuffle: True
+    num_workers: 4
+  val_dataloader:
+    batch_size: 4
+    shuffle: False
+    num_workers: 4
+  test_dataloader:
+    batch_size: 4
+    shuffle: False
+    num_workers: 4

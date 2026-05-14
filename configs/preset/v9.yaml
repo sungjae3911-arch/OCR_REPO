@@ -1,0 +1,26 @@
+# @package _global_
+# v9: EfficientNet-B6 + 1024 + 기본 aug (v4와 동일 환경, 백본만 B6)
+
+defaults:
+  - base
+  - /preset/datasets/db
+  - /preset/models/model_v9
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20
+
+dataloaders:
+  train_dataloader:
+    batch_size: 2
+    shuffle: True
+    num_workers: 4
+  val_dataloader:
+    batch_size: 2
+    shuffle: False
+    num_workers: 4
+  test_dataloader:
+    batch_size: 2
+    shuffle: False
+    num_workers: 4

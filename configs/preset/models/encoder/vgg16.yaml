@@ -1,0 +1,8 @@
+# @package _global_
+
+models:
+  encoder:
+    _target_: ${encoder_path}.TimmBackbone
+    model_name: 'vgg16'
+    select_features: [1, 2, 3, 4]
+    pretrained: true

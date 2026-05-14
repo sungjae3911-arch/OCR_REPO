@@ -1,0 +1,30 @@
+# @package _global_
+# v12: EfficientNet-B4 + basic aug + shrink_ratio 0.45
+# v11(0.5): recall 높고 precision 낮음 → 0.45로 균형 조정
+
+defaults:
+  - base
+  - /preset/datasets/db
+  - /preset/models/model_v4
+  - /preset/lightning_modules/base
+  - _self_
+
+trainer:
+  max_epochs: 20
+
+dataloaders:
+  train_dataloader:
+    batch_size: 4
+    shuffle: True
+    num_workers: 4
+  val_dataloader:
+    batch_size: 4
+    shuffle: False
+    num_workers: 4
+  test_dataloader:
+    batch_size: 4
+    shuffle: False
+    num_workers: 4
+
+collate_fn:
+  shrink_ratio: 0.45
